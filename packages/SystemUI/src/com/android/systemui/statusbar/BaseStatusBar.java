@@ -86,8 +86,14 @@ import com.android.systemui.recent.TaskDescription;
 import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.policy.NotificationRowLayout;
 import com.android.systemui.statusbar.tablet.StatusBarPanel;
+<<<<<<< HEAD
 import com.android.systemui.statusbar.phone.Ticker;
 import com.android.systemui.statusbar.halo.Halo;
+=======
+import com.android.systemui.statusbar.tablet.TabletTicker;
+import com.android.systemui.statusbar.view.PieStatusPanel;
+import com.android.systemui.statusbar.view.PieExpandPanel;
+>>>>>>> aee8daf... Halo: tablet mode support
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -140,6 +146,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     // Halo
     protected Halo mHalo = null;
+    protected TabletTicker mTabletTicker;
     protected Ticker mTicker;
     protected boolean mHaloActive;
     protected boolean mHaloTaskerActive = false;
@@ -166,6 +173,34 @@ public abstract class BaseStatusBar extends SystemUI implements
         return mTicker;
     }
 
+<<<<<<< HEAD
+=======
+    public TabletTicker getTabletTicker() {
+        return mTabletTicker;
+    }
+
+    public void collapse() {
+    }
+
+    @Override
+    protected void onConfigurationChanged(Configuration newConfig) {
+        if (mPieControlPanel != null) mPieControlPanel.bumpConfiguration();
+    }
+
+    public QuickSettingsContainerView getQuickSettingsPanel() {
+        // This method should be overriden
+        return null;
+    }
+
+    public Handler getHandler() {
+        return mHandler;
+    }
+
+    public IStatusBarService getService() {
+        return mBarService;
+    }
+
+>>>>>>> aee8daf... Halo: tablet mode support
     public NotificationData getNotificationData() {
         return mNotificationData;
     }
