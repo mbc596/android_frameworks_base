@@ -610,6 +610,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
 
                     if (mCurrentNotficationEntry == null) clearTicker();
                     mLastNotificationEntry = null;
+                    loadLastNotification(true);
 
                     mEffect.nap(1500);
                     if (mHideTicker) mEffect.sleep(HaloEffect.NAP_TIME + 3000, HaloEffect.SLEEP_TIME, false);
@@ -765,21 +766,10 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
 
                         boolean gestureChanged = false;
                         final int deltaIndex = (Math.abs(deltaY) - verticalThreshold) / verticalSteps;
-<<<<<<< HEAD
-                        if (deltaY > 0) {                           
+ 
+
+							if (deltaY > 0) {                           
                             if (deltaIndex < 2 && mGesture != Gesture.UP1) {
-=======
-
-
-                        if (deltaIndex < 1 && mGesture != Gesture.NONE) {
-                            // Dead zone buffer to prevent accidental notifiction dismissal
-                            mGesture = Gesture.NONE;
-                            gestureChanged = true;
-                            mEffect.setHaloOverlay(HaloProperties.Overlay.NONE, 0f);
-                            gestureText = "";
-                        } else if (deltaY > 0) { 
-                            if (deltaIndex == 1 && mGesture != Gesture.UP1) {
->>>>>>> 82ccafb... HALO first_start tutorial & gesture dead-zone
                                 mGesture = Gesture.UP1;
                                 gestureChanged = true;
                                 mEffect.setHaloOverlay(HaloProperties.Overlay.DISMISS, 1f);
@@ -1178,7 +1168,8 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
 
     void clearTicker() {
         mEffect.mHaloIcon.setImageDrawable(null);
-        mEffect.setHaloMessageNumber(0, false);
+        mEffect.msgNumberAlphaAnimator.cancel(true);
+        mEffect.mHaloNumber.setAlpha(0f);
         mContentIntent = null;
         mCurrentNotficationEntry = null;
         mEffect.killTicker();
