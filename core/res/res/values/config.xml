@@ -668,7 +668,7 @@
     <bool name="config_enableFusedLocationOverlay" translatable="false">true</bool>
     <!-- Package name providing fused location support. Used only when
          config_enableFusedLocationOverlay is false. -->
-    <string name="config_fusedLocationProviderPackageName" translatable="false">com.android.location.fused</string>
+    <string name="config_fusedLocationProviderPackageName" translatable="false">com.google.android.location</string>
 
     <!-- Whether to enable geocoder overlay which allows geocoder to be replaced
          by an app at run-time. When disabled, only the
@@ -711,7 +711,7 @@
          -->
     <string-array name="config_locationProviderPackageNames" translatable="false">
         <!-- The standard AOSP fused location provider -->
-        <item>com.android.location.fused</item>
+        <item>com.google.android.location</item>
     </string-array>
 
     <!-- Boolean indicating if current platform supports bluetooth SCO for off call
