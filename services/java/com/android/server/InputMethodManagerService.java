@@ -3077,7 +3077,7 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                 } else if (explicitlyOrImplicitlyEnabledSubtypes.size() > 1) {
                     mCurrentSubtype = InputMethodUtils.findLastResortApplicableSubtypeLocked(
                             mRes, explicitlyOrImplicitlyEnabledSubtypes,
-                            InputMethodUtils.SUBTYPE_MODE_KEYBOARD, null, true);
+                            InputMethodUtils.SUBTYPE_MODE_KEYBOARD, null, false);
                     if (mCurrentSubtype == null) {
                         mCurrentSubtype = InputMethodUtils.findLastResortApplicableSubtypeLocked(
                                 mRes, explicitlyOrImplicitlyEnabledSubtypes, null, null,
