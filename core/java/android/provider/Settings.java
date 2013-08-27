@@ -2413,7 +2413,7 @@ public final class Settings {
             SIP_CALL_OPTIONS,
             SIP_RECEIVE_CALLS,
             POINTER_SPEED,
-            VIBRATE_WHEN_RINGING,
+            VIBRATE_WHEN_RINGING
             LOCKSCREEN_QUICK_UNLOCK
         };
 
@@ -6000,5 +6000,18 @@ public final class Settings {
             ResolveInfo info = packageManager.resolveActivity(intent, 0);
             return info != null ? info.loadLabel(packageManager) : "";
         }
+    }
+
+    /**
+     * Returns the device ID that we should use when connecting to the mobile gtalk server.
+     * This is a string like "android-0x1242", where the hex string is the Android ID obtained
+     * from the GoogleLoginService.
+     *
+     * @param androidId The Android ID for this device.
+     * @return The device ID that should be used when connecting to the mobile gtalk server.
+     * @hide
+     */
+    public static String getGTalkDeviceId(long androidId) {
+        return "android-" + Long.toHexString(androidId);
     }
 }
