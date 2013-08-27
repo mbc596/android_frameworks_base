@@ -21,7 +21,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
-import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -48,7 +47,6 @@ public abstract class KeyguardAbsKeyInputView extends LinearLayout
     protected View mEcaView;
     private Drawable mBouncerFrame;
     protected boolean mEnableHaptics;
-    private boolean mQuickUnlock;
 
     // To avoid accidental lockout due to events while the device in in the pocket, ignore
     // any passwords with length less than or equal to this length.
@@ -94,7 +92,6 @@ public abstract class KeyguardAbsKeyInputView extends LinearLayout
 
     protected abstract int getPasswordTextViewId();
     protected abstract void resetState();
-    protected abstract boolean getQuickUnlockAllowed();
 
     @Override
     protected void onFinishInflate() {
@@ -114,9 +111,6 @@ public abstract class KeyguardAbsKeyInputView extends LinearLayout
             }
         });
 
-        mQuickUnlock = Settings.System.getBoolean(mContext.getContentResolver(),
-                Settings.System.LOCKSCREEN_QUICK_UNLOCK, false);
-
         mPasswordEntry.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
@@ -128,13 +122,6 @@ public abstract class KeyguardAbsKeyInputView extends LinearLayout
                 if (mCallback != null) {
                     mCallback.userActivity(0);
                 }
-                if (mQuickUnlock && getQuickUnlockAllowed()) {
-                    if (s.length() > MINIMUM_PASSWORD_LENGTH_BEFORE_REPORT &&
-                            mLockPatternUtils.checkPassword(s.toString())) {
-                        mCallback.dismiss(true);
-                        mCallback.reportSuccessfulUnlockAttempt();
-                    }
-                } 
             }
         });
         mSecurityMessageDisplay = new KeyguardMessageArea.Helper(this);

@@ -69,11 +69,6 @@ public class KeyguardPasswordView extends KeyguardAbsKeyInputView
     }
 
     @Override
-    protected boolean getQuickUnlockAllowed() {
-        return true;
-    }
-
-    @Override
     public boolean needsInput() {
         return true;
     }
