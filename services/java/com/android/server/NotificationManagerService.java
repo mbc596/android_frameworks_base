@@ -75,13 +75,18 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
 
+import com.android.server.NotificationManagerService;
+import com.android.internal.util.FastXmlSerializer;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
 
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Array;
@@ -447,6 +452,10 @@ public class NotificationManagerService extends INotificationManager.Stub
      * Use this when you just want to know if notifications are OK for this package.
      */
     public boolean areNotificationsEnabledForPackage(String pkg, int uid) {
+   checkCallerIsSystem();
+        return (mAppOps.checkOpNoThrow(AppOpsManager.OP_POST_NOTIFICATION, uid, pkg)
+                == AppOpsManager.MODE_ALLOWED);
+    }
 
     private synchronized void writeHaloBlockDb() {
         FileOutputStream outfile = null;
@@ -531,12 +540,6 @@ public class NotificationManagerService extends INotificationManager.Stub
         } else {
             return mHaloWhitelist.contains(pkg);
         }
-    }
-
->>>>>>> 518c329... HALO (1/2)
-        checkCallerIsSystem();
-        return (mAppOps.checkOpNoThrow(AppOpsManager.OP_POST_NOTIFICATION, uid, pkg)
-                == AppOpsManager.MODE_ALLOWED);
     }
 
     /** Use this when you actually want to post a notification or toast.

@@ -4174,6 +4174,7 @@ package android.app {
     method public android.content.Intent[] getIntents();
     method public android.app.PendingIntent getPendingIntent(int, int);
     method public android.app.PendingIntent getPendingIntent(int, int, android.os.Bundle);
+    method public void setTaskOnHome(boolean);
     method public void startActivities();
     method public void startActivities(android.os.Bundle);
   }
@@ -6239,6 +6240,7 @@ package android.content {
     field public static final int FLAG_ACTIVITY_TASK_ON_HOME = 16384; // 0x4000
     field public static final int FLAG_DEBUG_LOG_RESOLUTION = 8; // 0x8
     field public static final int FLAG_EXCLUDE_STOPPED_PACKAGES = 16; // 0x10
+    field public static final int FLAG_FLOATING_WINDOW = 8192; // 0x2000
     field public static final int FLAG_FROM_BACKGROUND = 4; // 0x4
     field public static final int FLAG_GRANT_READ_URI_PERMISSION = 1; // 0x1
     field public static final int FLAG_GRANT_WRITE_URI_PERMISSION = 2; // 0x2
@@ -21277,6 +21279,12 @@ package android.service.notification {
     method public boolean isOngoing();
     method public void writeToParcel(android.os.Parcel, int);
     field public static final android.os.Parcelable.Creator CREATOR;
+    field public final java.lang.String basePkg;
+    field public final int id;
+    field public final android.app.Notification notification;
+    field public final java.lang.String pkg;
+    field public final java.lang.String tag;
+    field public final android.os.UserHandle user;
   }
 
 }
@@ -26981,6 +26989,7 @@ package android.view {
     field public static final int PROGRESS_START = 0; // 0x0
     field public static final int PROGRESS_VISIBILITY_OFF = -2; // 0xfffffffe
     field public static final int PROGRESS_VISIBILITY_ON = -1; // 0xffffffff
+    field public boolean mIsFloatingWindow;
   }
 
   public static abstract interface Window.Callback {
