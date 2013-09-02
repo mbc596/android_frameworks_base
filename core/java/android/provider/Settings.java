@@ -2159,8 +2159,14 @@ public final class Settings {
          * @hide
          */
         public static final String NOTIFICATION_LIGHT_PULSE = "notification_light_pulse";
-		
-		/**
+	       
+	 /**
+         * Statusbar State
+         * @hide
+         */
+        public static final String EXPANDED_DESKTOP_STATE = "expanded_desktop_state";		
+
+	/**
          * HALO, should default to 0 (no, do not show)
          * @hide
          */

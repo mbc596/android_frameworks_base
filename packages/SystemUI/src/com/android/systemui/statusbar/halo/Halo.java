@@ -98,6 +98,7 @@ import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.provider.Settings.System;
 
 import com.android.systemui.R;
 import com.android.systemui.statusbar.BaseStatusBar.NotificationClicker;
