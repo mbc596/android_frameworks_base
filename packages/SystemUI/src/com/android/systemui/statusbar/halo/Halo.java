@@ -414,14 +414,13 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
 
     private void loadLastNotification(boolean includeCurrentDismissable) {
         if (getHaloMsgCount() > 0) {
-            mLastNotificationEntry = mNotificationData.get(getHaloMsgIndex(getHaloMsgCount() - 1, false));
+            mLastNotificationEntry = mNotificationData.get(getHaloMsgIndex(getHaloMsgCount()-1,"task"));
 
             // If the current notification is dismissable we might want to skip it if so desired
             if (!includeCurrentDismissable) {
                 if (getHaloMsgCount() > 1 && mLastNotificationEntry != null &&
                         mCurrentNotficationEntry != null &&
                         mLastNotificationEntry.notification == mCurrentNotficationEntry.notification) {
-<<<<<<< HEAD
                     boolean cancel = (mLastNotificationEntry.notification.notification.flags &
                             Notification.FLAG_AUTO_CANCEL) == Notification.FLAG_AUTO_CANCEL;
                     if (cancel) mLastNotificationEntry = mNotificationData.get(getHaloMsgIndex(getHaloMsgCount()-2,"task"));
@@ -429,13 +428,6 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
                     boolean cancel = (mLastNotificationEntry.notification.notification.flags &
                             Notification.FLAG_AUTO_CANCEL) == Notification.FLAG_AUTO_CANCEL;
                     if (cancel) {
-=======
-                    if (mLastNotificationEntry.notification.isClearable()) {
-                        mLastNotificationEntry = mNotificationData.get(getHaloMsgIndex(getHaloMsgCount() - 2, false));
-                    }
-                } else if (getHaloMsgCount() == 1) {
-                    if (mLastNotificationEntry.notification.isClearable()) {
->>>>>>> 08dbda2... HALO persistent notifications less pronounced + fixes
                         // We have one notification left and it is dismissable, clear it...
                         clearTicker();
                         return;
@@ -540,16 +532,8 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
         float originalAlpha = mContext.getResources().getFraction(R.dimen.status_bar_icon_drawing_alpha, 1, 1);
         for (int i = 0; i < mNotificationData.size(); i++) {
             NotificationData.Entry entry = mNotificationData.get(i);
-<<<<<<< HEAD
             if (entry.notification.pkg.equals("com.paranoid.halo")) continue;
             entry.icon.setAlpha(index == i ? 1f : originalAlpha);
-=======
-            float alpha = index == i ? 1f : originalAlpha;
-
-            // Persistent notification appear muted
-            if (!entry.notification.isClearable() && index != i) alpha /= 2;
-            entry.icon.setAlpha(alpha);
->>>>>>> 08dbda2... HALO persistent notifications less pronounced + fixes
         }
     }
 
@@ -648,7 +632,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
                 } else if (mGesture == Gesture.UP2) {
                     // Clear all notifications
                     playSoundEffect(SoundEffectConstants.CLICK);
-                    if (getHaloMsgCount()-getHidden() < 1) {
+                    if (getHaloMsgCount()-getHidden() <1){
                         mEffect.nap(1500);
                         if (mHideTicker) mEffect.sleep(HaloEffect.NAP_TIME + 3000, HaloEffect.SLEEP_TIME, false);
                     }
@@ -662,7 +646,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
                 } else if (mGesture == Gesture.UP1) {
                     // Dismiss notification
                     playSoundEffect(SoundEffectConstants.CLICK);
-                    if (getHaloMsgCount()-getHidden() < 1) {
+                    if (getHaloMsgCount()-getHidden() <1){
                         mEffect.nap(1500);
                         if (mHideTicker) mEffect.sleep(HaloEffect.NAP_TIME + 3000, HaloEffect.SLEEP_TIME, false);
                     }
@@ -853,7 +837,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
                         // Make a tiny pop if not so many icons are present
                         if (mHapticFeedback && getHaloMsgCount() < 10) mVibrator.vibrate(1);
 
-                        int iconIndex = getHaloMsgIndex(mMarkerIndex, false);
+                        int iconIndex = getHaloMsgIndex(mMarkerIndex, "task");
 
                         try {
                             if (iconIndex == -1) {
@@ -1344,7 +1328,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
         return msgs;
     }
 
-    public int getHaloMsgIndex(int index, boolean notifyOnUnlock) {
+    public int getHaloMsgIndex(int index, String option) {
         int msgIndex = 0;
         StatusBarNotification notification;
 
@@ -1356,7 +1340,9 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
                 // System is dead
             }
             //if notifying the user on unlock, ignore persistent notifications
-            if (notifyOnUnlock && !notification.isClearable()) continue;
+            if (option.equals("notify")) {
+                if (!notification.isClearable()) continue;
+            }
 
             if (msgIndex == index) return i;
 
@@ -1415,12 +1401,14 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
                     NotificationData.Entry entry = null;
                     if (getHaloMsgCount() > 0) {
                         for (int i = getHaloMsgCount()-1; i >= 0; i--) {
-                            NotificationData.Entry item = mNotificationData.get(getHaloMsgIndex(i, false));
+                            NotificationData.Entry item = mNotificationData.get(getHaloMsgIndex(i,"task"));
                             if (mCurrentNotficationEntry != null
                                     && mCurrentNotficationEntry.notification == item.notification) {
                                 continue;
                             }
-                            if (item.notification.isClearable()) {
+                            boolean cancel = (item.notification.getNotification().flags &
+                                    Notification.FLAG_AUTO_CANCEL) == Notification.FLAG_AUTO_CANCEL;
+                            if (cancel) {
                                 entry = item;
                                 break;
                             }
@@ -1452,7 +1440,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
             // When screen unlocked, HALO active & Expanded desktop mode, ping HALO and load last notification.
             // Because notifications are not readily visible and HALO does not "tick" on protected lock screens
             if(intent.getAction().equals(Intent.ACTION_USER_PRESENT) &&
-                    Settings.System.getInt(mContext.getContentResolver(), Settings.System.HALO_ACTIVE, 0) == 1) {
+                    Settings.System.getInt(mContext.getContentResolver(), Settings.System.HALO_ACTIVE, 0) == 1){
                 if (mKeyguardManager.isKeyguardSecure() ||
                         (Settings.System.getInt(mContext.getContentResolver(), Settings.System.EXPANDED_DESKTOP_STATE, 0) == 1 &&
                                 mState == State.HIDDEN)) {
@@ -1461,11 +1449,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
                         public void run() {
                             int lastMsg = getHaloMsgCount() - getHidden();
                             if (lastMsg > 0) {
-<<<<<<< HEAD
                                 NotificationData.Entry entry = mNotificationData.get(getHaloMsgIndex(lastMsg-1,"notify"));
-=======
-                                NotificationData.Entry entry = mNotificationData.get(getHaloMsgIndex(lastMsg - 1, true));
->>>>>>> 08dbda2... HALO persistent notifications less pronounced + fixes
                                 ApplicationInfo ai;
                                 try {
                                     ai = mPm.getApplicationInfo( entry.notification.getPackageName(), 0);
