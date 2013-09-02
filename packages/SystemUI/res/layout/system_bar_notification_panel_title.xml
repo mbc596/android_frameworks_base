@@ -159,7 +159,6 @@
                 android:layout_height="0dp"
                 />
 
-<<<<<<< HEAD
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -200,19 +199,6 @@
 
         <com.android.systemui.statusbar.policy.Clock
             android:id="@+id/clock"
-=======
-        <ImageView android:id="@+id/halo_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/quick_buttons"
-            android:paddingTop="14dp"
-            android:layout_alignParentTop="true"
-            android:paddingRight="15dp"
-            android:src="@drawable/ic_notify_halo_normal"
-            android:contentDescription="@string/accessibility_halo" />  
-
-        <ImageView android:id="@+id/clear_all_button"
->>>>>>> aee8daf... Halo: tablet mode support
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
