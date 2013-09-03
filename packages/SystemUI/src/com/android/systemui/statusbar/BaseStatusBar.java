@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2010 The Android Open Source Project
  *
@@ -69,6 +68,7 @@ import android.view.WindowManager;
 import android.view.WindowManagerGlobal;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.RemoteViews;
@@ -136,6 +136,8 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     protected int mCurrentUserId = 0;
 
+    protected FrameLayout mStatusBarContainer;
+
     protected int mLayoutDirection;
     private Locale mLocale;
 
@@ -169,6 +171,12 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     public NotificationData getNotificationData() {
         return mNotificationData;
+    }
+
+    private boolean mShowNotificationCounts;
+
+    public NotificationRowLayout getNotificationRowLayout() {
+        return mPile;
     }
 
     public IStatusBarService getService() {
@@ -1042,6 +1050,8 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     public void prepareHaloNotification(NotificationData.Entry entry, StatusBarNotification notification, boolean update) {
 
+        Notification notif = notification.getNotification();
+
         // Get the remote view
         try {
 
@@ -1377,3 +1387,4 @@ public abstract class BaseStatusBar extends SystemUI implements
         return km.inKeyguardRestrictedInputMode();
     }
 }
+
