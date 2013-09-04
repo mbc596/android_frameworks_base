@@ -451,6 +451,7 @@ public class NotificationManagerService extends INotificationManager.Stub
     /**
      * Use this when you just want to know if notifications are OK for this package.
      */
+
     public boolean areNotificationsEnabledForPackage(String pkg, int uid) {
    checkCallerIsSystem();
         return (mAppOps.checkOpNoThrow(AppOpsManager.OP_POST_NOTIFICATION, uid, pkg)
@@ -554,7 +555,7 @@ public class NotificationManagerService extends INotificationManager.Stub
         }
         return true;
     }
-
+   
     public void setNotificationsEnabledForPackage(String pkg, int uid, boolean enabled) {
         checkCallerIsSystem();
 
