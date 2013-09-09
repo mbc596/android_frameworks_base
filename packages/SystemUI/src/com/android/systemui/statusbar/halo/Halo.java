@@ -693,7 +693,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
                         mEffect.setHaloY((int)(mKillY - mIconHalfSize));
                             
                         if (!mOverX) {
-                            if (mHapticFeedback) mVibrator.vibrate(25);
+                            if (mHapticFeedback) mVibrator.vibrate(0);
                             mEffect.ping(mPaintHoloRed, 0);
                             mEffect.setHaloOverlay(HaloProperties.Overlay.BLACK_X, 1f);
                             mOverX = true;
@@ -715,7 +715,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
                             } else {
                                 mState = State.DRAG;
                                 mEffect.intro();
-                                if (mHapticFeedback) mVibrator.vibrate(25);
+                                if (mHapticFeedback) mVibrator.vibrate(0);
                             }
                         }
                     } else {
@@ -818,7 +818,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
                         if (gestureChanged) {
                             mMarkerIndex = -1;
                             mEffect.ticker(gestureText, 0, 250);
-                            if (mHapticFeedback) mVibrator.vibrate(10);
+                            if (mHapticFeedback) mVibrator.vibrate(0);
                             gestureChanged = false;
                         }
 
@@ -838,7 +838,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
                         oldIconIndex = mMarkerIndex;
 
                         // Make a tiny pop if not so many icons are present
-                        if (mHapticFeedback && getHaloMsgCount() < 10) mVibrator.vibrate(10);
+                        if (mHapticFeedback && getHaloMsgCount() < 10) mVibrator.vibrate(0);
 
                         int iconIndex = getHaloMsgIndex(mMarkerIndex, false);
                         try {
@@ -986,7 +986,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback {
                     if (posX > left && posX < right && posY > top && posY < bottom) {
                         v.performClick();
                         playSoundEffect(SoundEffectConstants.CLICK);
-                        if (mHapticFeedback) mVibrator.vibrate(25);
+                        if (mHapticFeedback) mVibrator.vibrate(0);
                         return true;
                     }
                 }
