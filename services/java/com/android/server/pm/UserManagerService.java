@@ -201,7 +201,6 @@ public class UserManagerService extends IUserManager.Stub {
                 }
                 sInstance = this;
             }
-
         }
     }
 
