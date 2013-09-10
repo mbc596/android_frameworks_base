@@ -35,9 +35,6 @@ interface INotificationManager
             in Notification notification, inout int[] idReceived, int userId);
     void cancelNotificationWithTag(String pkg, String tag, int id, int userId);
 
-    void setNotificationsEnabledForPackage(String pkg, int uid, boolean enabled);
-    boolean areNotificationsEnabledForPackage(String pkg, int uid);
-
     StatusBarNotification[] getActiveNotifications(String callingPkg);
     StatusBarNotification[] getHistoricalNotifications(String callingPkg, int count);
 
@@ -48,4 +45,14 @@ interface INotificationManager
     void cancelAllNotificationsFromListener(in INotificationListener token);
 
     StatusBarNotification[] getActiveNotificationsFromListener(in INotificationListener token);
+
+    void setNotificationsEnabledForPackage(String pkg, int uid, boolean enabled);
+    boolean areNotificationsEnabledForPackage(String pkg, int uid);
+    
+    void setHaloPolicyBlack(boolean state);
+    void setHaloStatus(String pkg, boolean status);
+    void setHaloBlacklistStatus(String pkg, boolean status);
+    void setHaloWhitelistStatus(String pkg, boolean status);
+    boolean isHaloPolicyBlack();
+    boolean isPackageAllowedForHalo(String pkg);
 }
