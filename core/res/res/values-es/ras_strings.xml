@@ -17,4 +17,8 @@
     <string name="reboot_confirm">Tu Nexus será reiniciado</string>
     <!-- label for item that reboots the phone in phone options dialog -->
     <string name="global_action_reboot">Reiniciar</string>
+
+    <!-- kill app long press back -->
+    <string name="app_killed_message">Aplicación cerrada</string>
+
 </resources>
