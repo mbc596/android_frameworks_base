@@ -2437,6 +2437,13 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL = "lockscreen_quick_unlock_control";
+
+        /**
+          * Whether to allow killing of the foreground app by long-pressing the Back button
+          * @hide
+          */
+         public static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
+
          /**
 	 * Boolean value whether to link ringtone and notification volumes
          * 
