@@ -171,4 +171,5 @@
     
     <!-- Volume adjust sound -->
     <integer name="def_volume_adjust_sounds_enabled">1</integer>
+
 </resources>

@@ -396,7 +396,6 @@ final class ActivityRecord {
                 labelRes = app.labelRes;
             }
             icon = aInfo.getIconResource();
-
             theme = aInfo.getThemeResource();
             realTheme = theme;
             if (realTheme == 0) {

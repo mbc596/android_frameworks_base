@@ -668,7 +668,7 @@
     <bool name="config_enableFusedLocationOverlay" translatable="false">true</bool>
     <!-- Package name providing fused location support. Used only when
          config_enableFusedLocationOverlay is false. -->
-    <string name="config_fusedLocationProviderPackageName" translatable="false">com.google.android.location</string>
+    <string name="config_fusedLocationProviderPackageName" translatable="false">com.android.location.fused</string>
 
     <!-- Whether to enable geocoder overlay which allows geocoder to be replaced
          by an app at run-time. When disabled, only the
@@ -712,6 +712,7 @@
     <string-array name="config_locationProviderPackageNames" translatable="false">
         <!-- The standard AOSP fused location provider -->
         <item>com.google.android.location</item>
+        <item>com.android.location.fused</item>
     </string-array>
 
     <!-- Boolean indicating if current platform supports bluetooth SCO for off call
@@ -771,6 +772,10 @@
 
     <!-- IP address of the dns server to use if nobody else suggests one -->
     <string name="config_default_dns_server" translatable="false">8.8.8.8</string>
+
+    <!-- The default mobile provisioning apn. Empty by default, maybe overridden by
+         an mcc/mnc specific config.xml -->
+    <string name="mobile_provisioning_apn" translatable="false"></string>
 
     <!-- The default mobile provisioning url. Empty by default, maybe overridden by
          an mcc/mnc specific config.xml -->
@@ -1140,8 +1145,7 @@
          when the IME is selected as an enabled IME. -->
     <string-array name="config_disabledUntilUsedPreinstalledImes" translatable="false">
         <item>com.android.inputmethod.latin</item>
-    </string-array>
-    
+    </string-array>   
 
     <!-- kill app long press back -->
     <integer name="config_backKillTimeout">2000</integer>

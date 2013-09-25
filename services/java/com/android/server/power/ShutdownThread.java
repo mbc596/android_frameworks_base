@@ -186,7 +186,6 @@ public final class ShutdownThread extends Thread {
             sConfirmDialog.setOnDismissListener(closer);
             sConfirmDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
             sConfirmDialog.show();
-
         } else {
             beginShutdownSequence(context);
         }
@@ -341,7 +340,6 @@ public final class ShutdownThread extends Thread {
         }
 
         Log.i(TAG, "Sending shutdown broadcast...");
-
         // First send the high-level shut down broadcast.
         mActionDone = false;
         mContext.sendOrderedBroadcastAsUser(new Intent(Intent.ACTION_SHUTDOWN),
@@ -361,9 +359,9 @@ public final class ShutdownThread extends Thread {
                 }
             }
         }
-
+        
         Log.i(TAG, "Shutting down activity manager...");
-
+        
         final IActivityManager am =
             ActivityManagerNative.asInterface(ServiceManager.checkService("activity"));
         if (am != null) {

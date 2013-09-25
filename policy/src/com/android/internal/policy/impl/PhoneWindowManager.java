@@ -295,7 +295,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     // The last window we were told about in focusChanged.
     WindowState mFocusedWindow;
     IApplicationToken mFocusedApp;
-    
+
     // Volume roker wake
     boolean mVolumeWakeScreen;
     // Volume rocker music controls
@@ -3828,6 +3828,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     // If the keyguard is showing, let it wake the device when ready.
                     mKeyguardMediator.onWakeKeyWhenKeyguardShowingTq(keyCode);
                 } else if ((keyCode != KeyEvent.KEYCODE_VOLUME_UP) && (keyCode != KeyEvent.KEYCODE_VOLUME_DOWN)) {
+
                     // Otherwise, wake the device ourselves.
                     result |= ACTION_WAKE_UP;
                 }

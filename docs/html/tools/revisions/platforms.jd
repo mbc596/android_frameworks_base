@@ -150,12 +150,6 @@ Devices in the <a href="{@docRoot}tools/help/avd-manager.html">AVD Manager</a>:<
 <h2 id="4.1">Android 4.1</h2>
 
 
-<p class="caution"><strong>Important:</strong> To download the new Android
-4.1.x system components from the Android SDK Manager, you must first update the
-SDK tools to revision 20 or later and restart the Android SDK Manager. If you do not,
-the Android 4.1 system components will not be available for download.</p>
-
-
 <div class="toggle-content closed">
 
   <p><a href="#" onclick="return toggleContent(this)">
@@ -268,11 +262,6 @@ emulator configuration.</p>
 
 <h2 id="4.0.3">Android 4.0.3</h2>
 
-
-<p class="caution"><strong>Important:</strong> To download the new Android
-4.0.x system components from the Android SDK Manager, you must first update the
-SDK tools to revision 14 or later and restart the Android SDK Manager. If you do not,
-the Android 4.0.x system components will not be available for download.</p>
 
 <div class="toggle-content closed">
 
@@ -711,13 +700,6 @@ ADT 12.</p>
 <h2 id="2.3.4">Android 2.3.4</h2>
 
 
-
-<p>The sections below provide notes about successive releases of
-the Android 2.3.4 platform component for the Android SDK, as denoted by
-revision number. To determine what revision(s) of the Android
-2.3.4 platforms are installed in your SDK environment, refer to
-the "Installed Packages" listing in the Android SDK and AVD Manager.</p>
-
 <div class="toggle-content closed" >
 
 <p><a href="#" onclick="return toggleContent(this)">
@@ -863,14 +845,6 @@ emulator skins are:</p>
 
 
 <h2 id="2.3">Android 2.3</h2>
-
-
-
-<p>The sections below provide notes about successive releases of
-the Android 2.3 platform component for the Android SDK, as denoted by
-revision number. To determine what revision(s) of the Android
-2.3 platforms are installed in your SDK environment, refer to
-the "Installed Packages" listing in the Android SDK and AVD Manager.</p>
 
 
 <div class="toggle-content closed" >
