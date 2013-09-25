@@ -528,7 +528,7 @@
     <bool name="config_enableLockBeforeUnlockScreen">false</bool>
 
     <!-- Diable lockscreen rotation by default -->
-    <bool name="config_enableLockScreenRotation">false</bool>
+    <bool name="config_enableLockScreenRotation">true</bool>
 
     <!-- Enable puk unlockscreen by default.
          If unlock screen is disabled, the puk should be unlocked through Emergency Dialer -->
@@ -711,6 +711,7 @@
          -->
     <string-array name="config_locationProviderPackageNames" translatable="false">
         <!-- The standard AOSP fused location provider -->
+	<item>com.android.location.fused</item>
         <item>com.google.android.location</item>
         <item>com.android.location.fused</item>
     </string-array>
